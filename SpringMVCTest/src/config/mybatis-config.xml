@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 指定所用日志的具体实现 -->
+<settings>
+<setting name="logImpl" value="LOG4J"/>
+<!-- 数据库一对多时候用到懒加载 -->
+<setting name="lazyLoadingEnabled" value="true"></setting>
+<setting name="aggressiveLazyLoading" value="false"></setting>
+<!-- 开启二级缓存 -->
+<setting name="cacheEnabled" value=" true"></setting>
+</settings>
+	<!-- 实体类,简称 -设置别名 -->
+	<typeAliases>
+		<typeAlias alias="User" type="com.mapper.UserMapper" />
+	</typeAliases>
+	<!-- 环境配置，即连接的数据库 -->
+	<!-- <environments default="mysql">
+	 <environment id="mysql">
+	  <transactionManager type="JDBC"></transactionManager>
+	  <dataSource type="POOLED">
+	   <property name="driver" value="com.mysql.jdbc.Driver"/>
+	   <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8" />
+	   <property name="username" value="root" />
+	   <property name="password" value="" />
+	  </dataSource>
+	 </environment>
+	</environments> -->
+	<!-- 实体接口映射资源 -->
+	<!--
+		说明：如果xxMapper.xml配置文件放在和xxMapper.java统一目录下，mappers也可以省略，因为org.mybatis.spring.mapper.MapperFactoryBean默认会去查找与xxMapper.java相同目录和名称的xxMapper.xml
+	-->
+
+	<mappers>
+		<mapper resource="com/mapper/UserMapper.xml" />
+		
+	</mappers>
+
+</configuration>  

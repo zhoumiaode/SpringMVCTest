@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+<!--    二级缓存格式 -->
+	<cache eviction="LRU" flushInterval="60000" size="512" readOnly="true"></cache>
+	
+	<!-- 通过自定义定义需要返回的参数，通过ResultMap来定义 -->
+	<resultMap id="userResultMap" type="com.vo.User">
+	 <id property="id" column="tb_id"></id>
+	 <result property="name" column="tb_name"></result>
+	 <result property="sex" column="tb_sex"></result>
+	  <result property="age" column="tb_age"></result>
+	</resultMap>
+	
+    <!--   多对一关联映射，通常采用立即加载，所以可以通过多表查询进行，association只是进行简单的数据封装-->
+	<resultMap id="studentResultMap" type="com.vo.Student">
+	 <id property="id" column="id"></id>
+	 <result property="name" column="name"></result>
+	 <result property="sex" column="sex"></result>
+	  <result property="age" column="age"></result>
+	  <association property="clazz"  javaType="com.vo.Clazz">
+	   <id property="id" column="cid"></id>
+	   <result property="code" column="code"></result>
+	  </association>
+	</resultMap>
+	<select id="selectStudent" resultMap="studentResultMap">
+	 select student.*,clazz.id as cid,code from student,clazz where student.clazz_id=clazz.id 
+	</select>
+	
+	<!-- 一对多关联映射，通常采用懒加载进行，当需要查询相连的数据的操作的时候才会进行数据库操作。懒加载采用fetchType="lazy"-->
+	<resultMap id="ClazzResultMap" type="com.vo.Clazz">
+	 <id property="id" column="id"></id>
+	 <result property="code" column="code"></result>
+	  <collection property="students"  javaType="ArrayList" column="id" ofType="com.vo.Student" 
+	  select="selectStudentWithId" fetchType="lazy"></collection>
+	</resultMap>
+	<select id="selectStudentWithId" resultType="com.vo.Student">
+	  select *  from student where clazz_id=#{id}
+	</select>
+	<!-- <select id="selectClazz" resultMap="ClazzResultMap">
+	 select * from clazz
+	</select> -->
+	
+	<insert id="save" parameterType="com.vo.User" useGeneratedKeys="true">
+		insert into tb_user(tb_name,tb_sex,tb_age) values(#{name},#{sex},#{age})
+	</insert>
+	<delete id="delete" parameterType="String">
+		delete from tb_user where tb_name=#{name}
+	</delete>
+	<update id="update" parameterType="com.vo.User">
+		update  tb_user set tb_name=#{name},tb_sex=#{sex},tb_age=#{age} where tb_id=#{id}
+	</update>
+	<select id="findAll"  resultMap="userResultMap">
+		select  * from tb_user 
+	</select>
+	<select id="find" resultType="String">
+		select  name from tb_user
+	</select>
+	<!-- <select id="findById" parameterType="int" resultMap="userResultMap">
+		select  * from tb_user where tb_id=#{id}
+	</select> -->
+	<select id="findByIdName" parameterType="com.vo.User" resultMap="userResultMap">
+		select  * from tb_user where tb_name=#{name} and tb_age=#{age}
+	</select>
+	
+	<select id="selectByIdLike" resultMap="userResultMap">
+	 select * from tb_user where tb_name='12'
+	 <if test="tb_id!=null">
+	 and tb_id=#{tb_id}
+	 </if>
+	</select>
+	<select id="selectByChoose" resultMap="userResultMap">
+	 select * from tb_user where tb_name='12'
+	 <choose>
+	 <when test="tb_id!=null">
+	 and tb_id=#{tb_id}
+	 </when>
+	 <when test="tb_age!=null and tb_sex!=null">
+	 and tb_age=#{tb_age} and tb_sex=#{tb_sex}
+	 </when>
+	 <otherwise>
+	 and tb_sex='q'
+	 </otherwise>
+	 </choose>
+	</select>
+	<!-- 动态的进行更新，根据用户提交信息选择性更新 -->
+	<update id="updateIfNecessary" parameterType="com.vo.User">
+		update  tb_user 
+		<set>
+		 <if test="name!=null">tb_name=#{name}</if>
+		 <if test="sex!=null">tb_sex=#{sex}</if>
+		 <if test="age!=null">tb_age=#{age}</if>
+		</set>
+       where tb_id=#{id}
+	</update>
+	<!-- foreach的用法 -->
+	<select id="selectByList" resultMap="userResultMap">
+	select * from tb_user where tb_id in
+	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+	#{item}
+	</foreach>
+	</select>
+	<!-- Bind的使用 -->
+	<select id="selectByLike" resultMap="userResultMap">
+	<bind name="pattern" value="'%'+_parameter.getId()+'%'"></bind>
+	select * from tb_user where tb_id like #{pattern}
+	</select>
+</mapper>
