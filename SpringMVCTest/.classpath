@@ -78,12 +78,12 @@
 	<classpathentry kind="lib" path="E:/JAVA工具包/mybatis-3.3.1/mybatis-3.3.1.jar"/>
 	<classpathentry kind="lib" path="E:/JAVA工具包/mybatis-3.3.1/mybatis-3.3.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="E:/JAVA工具包/mybatis-3.3.1/mybatis-3.3.1-sources.jar"/>
-	<classpathentry kind="lib" path="E:/WorkSpaces/SpringMVC_Spring_mybatis/WebRoot/WEB-INF/lib/log/log4j-1.2.16.jar"/>
-	<classpathentry kind="lib" path="E:/WorkSpaces/SpringMVC_Spring_mybatis/WebRoot/WEB-INF/lib/mybatis/mybatis-spring-1.2.1.jar"/>
-	<classpathentry kind="lib" path="E:/WorkSpaces/SpringMVC_Spring_mybatis/WebRoot/WEB-INF/lib/spring/aopalliance.jar"/>
 	<classpathentry kind="lib" path="E:/JAVA工具包/commons-pool-1.4.jar/commons-pool-1.4.jar"/>
 	<classpathentry kind="lib" path="E:/JAVA工具包/commons-dbcp-1.4-bin/commons-dbcp-1.4/commons-dbcp-1.4.jar"/>
 	<classpathentry kind="lib" path="E:/JAVA工具包/commons-dbcp-1.4-bin/commons-dbcp-1.4/commons-dbcp-1.4-javadoc.jar"/>
 	<classpathentry kind="lib" path="E:/JAVA工具包/commons-dbcp-1.4-bin/commons-dbcp-1.4/commons-dbcp-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="E:/git本地库/SpringMVC_Spring_mybatis/SpringMVC_Spring_mybatis/WebRoot/WEB-INF/lib/spring/aopalliance.jar"/>
+	<classpathentry kind="lib" path="E:/git本地库/SpringMVC_Spring_mybatis/SpringMVC_Spring_mybatis/WebRoot/WEB-INF/lib/log/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="E:/git本地库/SpringMVC_Spring_mybatis/SpringMVC_Spring_mybatis/WebRoot/WEB-INF/lib/mybatis/mybatis-spring-1.2.1.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

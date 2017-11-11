@@ -39,14 +39,14 @@ public interface UserMapper {
 	List<User> findByIdName(User user);
 	List<Student> selectStudent();
 	
-	@Select("select * from clazz")
+	/*@Select("select * from clazz")
 	@Results({
 		@Result(id=true,column="id",property="id"),
 		@Result(column="code",property="code"),
 		@Result(column="id",property="students",
 		many=@Many(select="com.mapper.StudentMapper.selectbyId",fetchType=FetchType.LAZY))
 		
-	})
+	})*/
 	List<Clazz> selectClazz();
 	//ifÓï¾äµÄµ÷ÓÃ
 	List<User> selectByIdLike(HashMap<String,Object> param);

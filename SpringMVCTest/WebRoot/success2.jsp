@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        for(int i=0;i<list.size();i++){
        Clazz clazz=(Clazz)list.get(i);
        List list1=(List)clazz.getStudents();
-       for(int j=0;j<list.size();j++){
+       for(int j=0;j<list1.size();j++){
        Student student=(Student)list1.get(j);
        %>
       <tr>

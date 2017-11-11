@@ -38,9 +38,9 @@
 	<select id="selectStudentWithId" resultType="com.vo.Student">
 	  select *  from student where clazz_id=#{id}
 	</select>
-	<!-- <select id="selectClazz" resultMap="ClazzResultMap">
+	<select id="selectClazz" resultMap="ClazzResultMap">
 	 select * from clazz
-	</select> -->
+	</select>
 	
 	<insert id="save" parameterType="com.vo.User" useGeneratedKeys="true">
 		insert into tb_user(tb_name,tb_sex,tb_age) values(#{name},#{sex},#{age})

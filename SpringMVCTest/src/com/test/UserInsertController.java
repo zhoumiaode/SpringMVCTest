@@ -42,7 +42,8 @@ public class UserInsertController {
 		
 		/*List<Student> studentlist=insertServiceImpl.selectStudent();
 		model.addAttribute("studentlist", studentlist);*/
-		/*List<Clazz> clazzlist=insertServiceImpl.selectClazz();*/
+		List<Clazz> clazzlist=insertServiceImpl.selectClazz();
+		model.addAttribute("clazzlist", clazzlist);
 		/*for(Clazz cl:clazzlist){
 			System.out.println(cl);
 			List<Student> s=cl.getStudents();
@@ -72,7 +73,7 @@ public class UserInsertController {
 		user.setId(2);
 		List<User> userlist=insertServiceImpl.selectByLike(user);*/
 		/*注释进行动态SQL语句*/
-		HashMap<String,Object> param=new HashMap<String,Object>();
+		/*HashMap<String,Object> param=new HashMap<String,Object>();
 		param.put("tb_age",12);
 		param.put("tb_sex", 12);
 		List<User> userlist=insertServiceImpl.selectProvider(param);
@@ -85,8 +86,8 @@ public class UserInsertController {
 		if(a==1){
 			System.out.println("成功");
 			System.out.println(user.getId());
-		}
-		return "success";
+		}*/
+		return "success2";
 		
 	}
 
